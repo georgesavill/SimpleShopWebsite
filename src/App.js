@@ -1,12 +1,19 @@
 import React from 'react';
 import './App.css';
 
-function SideMenu(){
-    const sideMenuEntries = ["Home", "Shop", "About"];
-    return(<div className="sideMenu">{sideMenuEntries.map((entry) =><SideMenuEntry value={entry}/>)}</div>)
+class SideMenu extends React.Component {
+    constructor(props){
+        super(props);
+        this.sideMenuEntries = ["home", "shop", "about"];
+    }
+    render(){
+        return(<div className="sideMenu">{this.sideMenuEntries.map((entry) => <SideMenuEntry key={entry} value={entry} setPage={this.props.setPage}/>)}</div>)
+    }
 }
+
 function SideMenuEntry(props){
-    return(<div className="sideMenuEntry">{props.value}</div>)
+    function changePage() {props.setPage(props.value)};
+    return(<div className="sideMenuEntry" onClick={changePage}>{props.value}</div>)
 }
 
 class TopNav extends React.Component {
@@ -33,10 +40,10 @@ function HomePage(){
     return <div>Welcome to the home page</div>
 }
 function ShopPage(){
-    return <div>Welcome to the shop page</div>
+    return <div>Shop coming soon...</div>
 }
 function AboutPage(){
-    return <div>Welcome to the about page</div>
+    return <div>Hi my name is Glenn and I make metal tables!</div>
 }
 
 class App extends React.Component {
@@ -58,7 +65,7 @@ class App extends React.Component {
             case "about":
                 return <AboutPage></AboutPage>
             case "menu":
-                return <SideMenu></SideMenu>
+                return <SideMenu setPage={this.setPage}></SideMenu>
             default:
                 return <HomePage></HomePage>
         }
