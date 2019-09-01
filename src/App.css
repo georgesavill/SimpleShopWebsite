@@ -1,8 +1,8 @@
 .app {text-align: center}
-.pageContent{margin-top:40px;padding:10px}
+.pageContent{margin-top:50px;padding:10px}
 
-.topNav{position:fixed;top:0;width:100%;height:40px;line-height:40px;background:#555;color:#fff;font-size:22px}
-.menuBtn{position: absolute;top:0;right:0;float:right;margin:0 5px}
+.topNav{position:fixed;top:0;width:100%;height:50px;line-height:50px;background:#555;color:#fff;font-size:22px}
+.menuBtn{position: absolute;top:0;right:0;float:right;margin:5px 10px;height:100%}
 .bar1,.bar2,.bar3{width:35px;height:5px;background-color:#fff;margin:6px 0; transition:0.2s;border-radius:3px}
 .change .bar1{-webkit-transform: rotate(-45deg) translate(-9px, 6px);transform: rotate(-45deg) translate(-9px, 6px)}
 .change .bar2{opacity: 0}
