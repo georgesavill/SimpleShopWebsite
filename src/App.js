@@ -29,6 +29,16 @@ class TopNav extends React.Component {
     )}
 }
 
+function HomePage(){
+    return <div>Welcome to the home page</div>
+}
+function ShopPage(){
+    return <div>Welcome to the shop page</div>
+}
+function AboutPage(){
+    return <div>Welcome to the about page</div>
+}
+
 class App extends React.Component {
     constructor(props){
         super(props);
@@ -42,11 +52,15 @@ class App extends React.Component {
     renderPage(page){
         switch(page){
             case "home":
-                return <div>Welcome to the home page</div>
-                break;
+                return <HomePage></HomePage>
+            case "shop":
+                return <ShopPage></ShopPage>
+            case "about":
+                return <AboutPage></AboutPage>
             case "menu":
                 return <SideMenu></SideMenu>
-                break;
+            default:
+                return <HomePage></HomePage>
         }
     }
     render(){
