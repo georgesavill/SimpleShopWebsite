@@ -23,9 +23,7 @@ class TopNav extends React.Component {
     return(
         <div className="topNav">{this.props.currentPage}
             <div onClick={this.openCloseMenu} className={this.state.menuOpen ? "menuBtn change" : "menuBtn"}>
-                <div className="bar1"></div>
-                <div className="bar2"></div>
-                <div className="bar3"></div>
+                <div className="bar1"></div><div className="bar2"></div><div className="bar3"></div>
             </div>
         </div>
     )}
@@ -41,8 +39,22 @@ class App extends React.Component {
         this.setPage = this.setPage.bind(this);
     }
     setPage(page){this.setState(() => ({currentPage: page, previousPage: this.state.currentPage}))}
+    renderPage(page){
+        switch(page){
+            case "home":
+                return <div>Welcome to the home page</div>
+                break;
+            case "menu":
+                return <SideMenu></SideMenu>
+                break;
+        }
+    }
     render(){
-        return(<div className="app"><TopNav previousPage={this.state.previousPage} currentPage={this.state.currentPage} setPage={this.setPage}></TopNav></div>
+        return(
+        <div className="app">
+            <TopNav previousPage={this.state.previousPage} currentPage={this.state.currentPage} setPage={this.setPage}></TopNav>
+            <div className="pageContent">{this.renderPage(this.state.currentPage)}</div>
+        </div>
         )
     }
 }
