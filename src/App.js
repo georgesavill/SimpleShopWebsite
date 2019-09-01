@@ -3,17 +3,10 @@ import './App.css';
 
 function SideMenu(){
     const sideMenuEntries = ["Home", "Shop", "About"];
-    return(
-        <div className="sideMenu">
-            {sideMenuEntries.map((entry) =>
-                <SideMenuEntry value={entry}/>)}
-        </div>
-    )
+    return(<div className="sideMenu">{sideMenuEntries.map((entry) =><SideMenuEntry value={entry}/>)}</div>)
 }
 function SideMenuEntry(props){
-    return(
-        <div className="sideMenuEntry">{props.value}</div>
-    )
+    return(<div className="sideMenuEntry">{props.value}</div>)
 }
 
 class TopNav extends React.Component {
@@ -24,7 +17,7 @@ class TopNav extends React.Component {
     }
     openCloseMenu(){
         this.setState(state => ({menuOpen: !state.menuOpen}));
-        this.props.setPage(this.state.menuOpen ? "home" : "menu");
+        this.props.setPage(this.state.menuOpen ? this.props.previousPage : "menu");
     }
     render(){
     return(
@@ -41,15 +34,15 @@ class TopNav extends React.Component {
 class App extends React.Component {
     constructor(props){
         super(props);
-        this.state = {currentPage: "home"}
+        this.state = {
+            currentPage: "home",
+            previousPage: ""
+        }
         this.setPage = this.setPage.bind(this);
     }
-    setPage(page){this.setState(() => ({currentPage: page}))}
+    setPage(page){this.setState(() => ({currentPage: page, previousPage: this.state.currentPage}))}
     render(){
-        return(
-            <div className="app">
-                <TopNav currentPage={this.state.currentPage} setPage={this.setPage}></TopNav>
-            </div>
+        return(<div className="app"><TopNav previousPage={this.state.previousPage} currentPage={this.state.currentPage} setPage={this.setPage}></TopNav></div>
         )
     }
 }
